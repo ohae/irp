@@ -1,0 +1,30 @@
+@startuml Overview
+!include includes/blue-theme.iwsd
+
+left to right direction
+
+:Back user: as back_user
+:Front user: as front_user
+
+:Brand: --> back_user
+:Designer: --> back_user
+:Investor: --> back_user
+:Manufacture: --> back_user
+front_user <-- :Dealer:
+front_user <-- :Customer:
+
+rectangle Contract {
+    back_user -- (Create Contract)
+    back_user -- (View Contract)
+    back_user -- (Edit Contract)
+    back_user -- (Delete Contract)
+    back_user -- (Rating Contract)
+    (View Contract) -- front_user
+}
+
+rectangle Feed {
+    back_user -- (New Feed)
+    (New Feed) -- front_user
+}
+
+@enduml

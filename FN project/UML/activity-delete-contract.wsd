@@ -1,0 +1,23 @@
+@startuml create-contract
+
+skinparam titleBorderThickness 2
+
+title Delete Contract Activity
+
+start
+
+:tap hamburger icon in navbar;
+:Choose 'Contract' from navdrawer;
+:Show Contract List;
+:select target Contract;
+:show Contract detail;
+note right: preview before delete
+:tap delete button;
+#red :<color:white>popup warning message</color>;
+:delete Contract;
+#cyan :notify all Participants;
+
+
+end
+
+@enduml

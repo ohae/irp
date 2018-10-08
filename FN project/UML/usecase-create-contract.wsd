@@ -1,0 +1,27 @@
+@startuml create-contract
+
+:Contract owner: as owner #red
+
+
+rectangle Mobile {
+    owner -> (Contract list) : open Contract menu from app drawer 
+    (Contract list) -down-> (Create new contract)
+    (Contract list) -down-> (Edit contract)
+}
+
+rectangle Web {
+    owner -down-> (IRP website) : open browser
+    (IRP website) -down-> (QR Code[UniqueId]) : manage web by mobile activation
+
+
+    (Create new contract) -down-> (QR Code[UniqueId]) : Activate website with unique id
+    (Edit contract) -down-> (QR Code[UniqueId]) : Activate website with unique id
+    (QR Code[UniqueId]) -down-> (Owner's Contract) : Redirect to owner's contract page
+
+    (Owner's Contract) -down-> (Create Contract) : depend on mobile activation
+    (Owner's Contract) -down-> (Edit Contract) : depend on mobile activation
+
+    (IRP website) .down.> (Owner's Contract) : manage directly
+}
+
+@enduml

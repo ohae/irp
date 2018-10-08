@@ -1,0 +1,39 @@
+@startuml(id=CONTRACT_INVITATION)
+
+partition #aqua Invitation {
+    :invite Participant?;
+!ifndef HIDE_PARTITION_CONTENT
+    note right: Contract owner can invite\nparticipant later
+
+    if () then (yes)
+        :send Agreement;
+
+        repeat
+
+        if (Participant **ACCEPTED**\ninvitation) then (yes)
+            :add Participant to Contract;
+        elseif (Participant **REFUSED**\ninvitation and negociate) then (yes)
+            repeat
+            :establish new Agreement;
+            repeat while (Contract Owner and Participant\naccepted new Agreement?) -> no
+            -> yes;
+            :add Participant to Contract;
+        elseif (Participant **REJECTED**\ninvitation) then (yes)
+        else (nothing)
+        endif
+
+        repeat while (more Participant?)
+
+    else (no)
+
+    endif
+!endif
+}
+
+@enduml
+
+@startuml(id=MY_OWN_ID2)
+
+:Test;
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml create-contract
+
+skinparam titleBorderThickness 2
+
+title Create Contract Activity
+
+start
+
+:tap hamburger icon in navbar;
+:Choose 'Contract' from navdrawer;
+:Show Contract List;
+:tap '+' hover icon;
+:fill Contract detail;
+
+!include_many includes/component.iwsd!CONTRACT_INVITATION
+
+if (Submit) then (save **Final**)
+else (save **Draft**)
+    stop
+endif
+
+if (Activate Contract?) then (active)
+    #cyan :notify all Participants;
+else (postpone)
+endif
+
+
+end
+
+@enduml

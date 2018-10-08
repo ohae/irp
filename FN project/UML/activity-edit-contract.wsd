@@ -1,0 +1,37 @@
+@startuml create-contract
+!define HIDE_PARTITION_CONTENT
+
+skinparam titleBorderThickness 2
+
+title Edit Contract Activity
+
+start
+
+:tap hamburger icon in navbar;
+:Choose 'Contract' from navdrawer;
+:Show Contract List;
+:select target Contract;
+:show Contract detail;
+note right: preview before edit
+:tap edit button;
+:enter Edit mode;
+
+fork
+    :edit Contract detail;
+
+forkagain
+    !include_many includes/component.iwsd!CONTRACT_INVITATION
+
+endfork
+
+:Submit;
+#cyan :notify all Participants for\ncontract modification;
+
+if (Participants accepted changed) then (yes)
+else (no)
+    :???;
+endif
+
+end
+
+@enduml
